@@ -34,6 +34,7 @@ int mouse_x, mouse_y;
 
 int speed_x, speed_y;
 int direction[2] = { -1, 1 };
+
 /*
 Purpose of LoadGame Function: Sets starting location of the window, and objects within the window. Has two error checks, if not true, they return
 */
@@ -82,6 +83,7 @@ void LoadGame()
 	Line.w = 10;
 	Line.h = 590;
 
+	//speed variables
 	speed_x = -1;
 	speed_y = -1;
 }
@@ -122,11 +124,6 @@ void Update()
 {
 	PlayerPaddle.y = mouse_y;
 
-	Ball.x += 1;
-	Ball.y += 1;
-
-	Ball.x += speed_x;
-	Ball.y += speed_y;
 
 	//ball goes out on sides left and right
 	//reset to centre of screen
@@ -138,6 +135,9 @@ void Update()
 		speed_x = (rand() % 2 + 1) * direction[rand() % 2];
 		speed_y = (rand() % 2 + 1) * direction[rand() % 2];
 	}
+
+	Ball.x += speed_x;
+	Ball.y += speed_y;
 
 	SDL_Delay(10);
 }
