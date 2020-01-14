@@ -118,7 +118,7 @@ void LoadGame()
 
 	//Sets the starting X and Y coordinates of the Ball1, as well as height and width
 	Ball1.x = 370;
-	Ball1.y = 290;
+	Ball1.y = 220;
 	Ball1.w = 20;
 	Ball1.h = 20;
 
@@ -246,7 +246,7 @@ void DrawScreen()
 	SDL_RenderFillRect(renderer, &PlayerPaddle);
 	SDL_RenderFillRect(renderer, &AIPaddle);
 
-	//sets the colour of the Ball1
+	//sets the colour of the Ball1 and renders it
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
 	SDL_RenderFillRect(renderer, &Ball1);
 
