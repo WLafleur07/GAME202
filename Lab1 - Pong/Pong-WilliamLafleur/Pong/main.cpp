@@ -5,7 +5,6 @@ Title of Program: Game Programming
 Date: 1/13/2020
 */
 
-#include <cstdio>
 #include <cstdlib>
 //includes the SDL Library
 #include "SDL.h"
@@ -20,7 +19,7 @@ SDL_Renderer *renderer;
 //creates a bool as value true, will be used for main game loop
 bool running = true;
 
-//sets 4 rectangles for Player paddle, AI Paddle, Ball1 and the line
+//sets 5 rectangles for Player paddle, AI Paddle, Ball1 and the line
 SDL_Rect PlayerPaddle;
 SDL_Rect AIPaddle;
 SDL_Rect Ball1;
@@ -35,6 +34,8 @@ int mouse_x, mouse_y;
 
 int speed_x, speed_y;
 int direction[2] = { -1, 1 };
+
+int speed2_x, speed2_y;
 
 bool check_collision(SDL_Rect A, SDL_Rect B)
 {
@@ -123,8 +124,8 @@ void LoadGame()
 	Ball1.h = 20;
 
 	//Sets the starting X and Y coordinates of the Ball2, as well as height and width
-	Ball2.x = 370;
-	Ball2.y = 290;
+	Ball2.x = rand();
+	Ball2.y = rand();
 	Ball2.w = 20;
 	Ball2.h = 20;
 
@@ -138,6 +139,9 @@ void LoadGame()
 	//speed variables
 	speed_x = -1;
 	speed_y = -1;
+
+	speed2_x = -1;
+	speed2_y = -1;
 }
 
 /*
@@ -194,18 +198,18 @@ void Update()
 		Ball2.x = WINDOW_WIDTH / 2;
 		Ball2.y = WINDOW_HEIGHT / 2;
 		//this expression produces random numbers -1, -2, 1 and 2
-		speed_x = (rand() % 2 + 1) * direction[rand() % 2];
-		speed_y = (rand() % 2 + 1) * direction[rand() % 2];
+		speed2_x = (rand() % 2 + 1) * direction[rand() % 2];
+		speed2_y = (rand() % 2 + 1) * direction[rand() % 2];
 	}
 
-	if (Ball1.y < 0 || Ball1.y >(WINDOW_HEIGHT - Ball1.h))
+	if (Ball1.y < 0 || Ball1.y > (WINDOW_HEIGHT - Ball1.h))
 	{
 		speed_y = -speed_y;
 	}
 
-	if (Ball2.y < 0 || Ball2.y >(WINDOW_HEIGHT - Ball2.h))
+	if (Ball2.y < 0 || Ball2.y > (WINDOW_HEIGHT - Ball2.h))
 	{
-		speed_y = -speed_y;
+		speed2_y = -speed2_y;
 	}
 
 	if (PlayerPaddle.y < 0 || PlayerPaddle.y > WINDOW_HEIGHT - PlayerPaddle.h)
@@ -214,18 +218,31 @@ void Update()
 	}
 
 
-	AIPaddle.y = Ball1.y - AIPaddle.h / 2 + Ball1.h / 2;
+	if (Ball1.x > Ball2.x)
+	{
+		AIPaddle.y = Ball1.y - AIPaddle.h / 2 + Ball1.h / 2;
+	}
+	else
+	{
+		AIPaddle.y = Ball2.y - AIPaddle.h / 2 + Ball2.h / 2;
+	}
+
 
 	if (check_collision(Ball1, AIPaddle) || check_collision(Ball1, PlayerPaddle))
 	{
 		speed_x = -speed_x;
 	}
 
+	if (check_collision(Ball2, AIPaddle) || check_collision(Ball2, PlayerPaddle))
+	{
+		speed2_x = -speed2_x;
+	}
+
 	Ball1.x += speed_x;
 	Ball1.y += speed_y;
 
-	Ball2.x += speed_x;
-	Ball2.y += speed_y;
+	Ball2.x += speed2_x;
+	Ball2.y += speed2_y;
 
 	SDL_Delay(10);
 }
