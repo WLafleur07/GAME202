@@ -122,6 +122,7 @@ void LoadGame()
 	Ball1.w = 20;
 	Ball1.h = 20;
 
+	//Sets the starting X and Y coordinates of the Ball2, as well as height and width
 	Ball2.x = 370;
 	Ball2.y = 290;
 	Ball2.w = 20;
@@ -185,8 +186,9 @@ void Update()
 		//this expression produces random numbers -1, -2, 1 and 2
 		speed_x = (rand() % 2 + 1) * direction[rand() % 2];
 		speed_y = (rand() % 2 + 1) * direction[rand() % 2];
-	}
 
+	}
+	
 	if (Ball2.x < 0 || Ball2.x > WINDOW_WIDTH)
 	{
 		Ball2.x = WINDOW_WIDTH / 2;
