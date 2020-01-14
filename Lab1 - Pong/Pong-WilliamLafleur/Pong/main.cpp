@@ -20,10 +20,11 @@ SDL_Renderer *renderer;
 //creates a bool as value true, will be used for main game loop
 bool running = true;
 
-//sets 4 rectangles for Player paddle, AI Paddle, ball and the line
+//sets 4 rectangles for Player paddle, AI Paddle, Ball1 and the line
 SDL_Rect PlayerPaddle;
 SDL_Rect AIPaddle;
-SDL_Rect Ball;
+SDL_Rect Ball1;
+SDL_Rect Ball2;
 SDL_Rect Line;
 
 //the core of all event handling. A uninon of all event structures used in SDL
@@ -34,6 +35,50 @@ int mouse_x, mouse_y;
 
 int speed_x, speed_y;
 int direction[2] = { -1, 1 };
+
+bool check_collision(SDL_Rect A, SDL_Rect B)
+{
+	//the sides of the rectangles
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	//calculate the sides of rect A
+	leftA = A.x;
+	rightA = A.x + A.w;
+	topA = A.y;
+	bottomA = A.y + A.h;
+
+	//calculate the sides of rect B
+	leftB = B.x;
+	rightB = B.x + B.w;
+	topB = B.y;
+	bottomB = B.y + B.h;
+	//if any of the sides from A are outside of B
+	if (bottomA <= topB)
+	{
+		return false;
+	}
+
+	if (topA >= bottomB)
+	{
+		return false;
+	}
+
+	if (rightA <= leftB)
+	{
+		return false;
+	}
+
+	if (leftA >= rightB)
+	{
+		return false;
+	}
+
+	//if none of the sides from A are outside B
+	return true;
+}
 
 /*
 Purpose of LoadGame Function: Sets starting location of the window, and objects within the window. Has two error checks, if not true, they return
@@ -71,11 +116,17 @@ void LoadGame()
 	AIPaddle.h = 100;
 	AIPaddle.w = 20;
 
-	//Sets the starting X and Y coordinates of the ball, as well as height and width
-	Ball.x = 370;
-	Ball.y = 290;
-	Ball.w = 20;
-	Ball.h = 20;
+	//Sets the starting X and Y coordinates of the Ball1, as well as height and width
+	Ball1.x = 370;
+	Ball1.y = 290;
+	Ball1.w = 20;
+	Ball1.h = 20;
+
+	Ball2.x = 370;
+	Ball2.y = 290;
+	Ball2.w = 20;
+	Ball2.h = 20;
+
 
 	//sets the starting X and Y position of the line and the dimensions
 	Line.x = 400;
@@ -125,19 +176,54 @@ void Update()
 	PlayerPaddle.y = mouse_y;
 
 
-	//ball goes out on sides left and right
+	//Ball1 goes out on sides left and right
 	//reset to centre of screen
-	if (Ball.x < 0 || Ball.x > WINDOW_WIDTH)
+	if (Ball1.x < 0 || Ball1.x > WINDOW_WIDTH)
 	{
-		Ball.x = WINDOW_WIDTH / 2;
-		Ball.y = WINDOW_HEIGHT / 2;
+		Ball1.x = WINDOW_WIDTH / 2;
+		Ball1.y = WINDOW_HEIGHT / 2;
 		//this expression produces random numbers -1, -2, 1 and 2
 		speed_x = (rand() % 2 + 1) * direction[rand() % 2];
 		speed_y = (rand() % 2 + 1) * direction[rand() % 2];
 	}
 
-	Ball.x += speed_x;
-	Ball.y += speed_y;
+	if (Ball2.x < 0 || Ball2.x > WINDOW_WIDTH)
+	{
+		Ball2.x = WINDOW_WIDTH / 2;
+		Ball2.y = WINDOW_HEIGHT / 2;
+		//this expression produces random numbers -1, -2, 1 and 2
+		speed_x = (rand() % 2 + 1) * direction[rand() % 2];
+		speed_y = (rand() % 2 + 1) * direction[rand() % 2];
+	}
+
+	if (Ball1.y < 0 || Ball1.y >(WINDOW_HEIGHT - Ball1.h))
+	{
+		speed_y = -speed_y;
+	}
+
+	if (Ball2.y < 0 || Ball2.y >(WINDOW_HEIGHT - Ball2.h))
+	{
+		speed_y = -speed_y;
+	}
+
+	if (PlayerPaddle.y < 0 || PlayerPaddle.y > WINDOW_HEIGHT - PlayerPaddle.h)
+	{
+		PlayerPaddle.y = 500;
+	}
+
+
+	AIPaddle.y = Ball1.y - AIPaddle.h / 2 + Ball1.h / 2;
+
+	if (check_collision(Ball1, AIPaddle) || check_collision(Ball1, PlayerPaddle))
+	{
+		speed_x = -speed_x;
+	}
+
+	Ball1.x += speed_x;
+	Ball1.y += speed_y;
+
+	Ball2.x += speed_x;
+	Ball2.y += speed_y;
 
 	SDL_Delay(10);
 }
@@ -160,9 +246,12 @@ void DrawScreen()
 	SDL_RenderFillRect(renderer, &PlayerPaddle);
 	SDL_RenderFillRect(renderer, &AIPaddle);
 
-	//sets the colour of the ball
+	//sets the colour of the Ball1
 	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(renderer, &Ball);
+	SDL_RenderFillRect(renderer, &Ball1);
+
+	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_RenderFillRect(renderer, &Ball2);
 
 	//sets the colour of the line
 	SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
