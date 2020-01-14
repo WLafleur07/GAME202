@@ -6,8 +6,11 @@ Date: 1/13/2020
 */
 
 #include <cstdlib>
+#include <iostream>
 //includes the SDL Library
 #include "SDL.h"
+
+using namespace std;
 
 //defines the programs window size in pixels
 #define WINDOW_WIDTH	800
@@ -36,6 +39,9 @@ int speed_x, speed_y;
 int direction[2] = { -1, 1 };
 
 int speed2_x, speed2_y;
+
+int playerScore = 0;
+int AIScore = 0;
 
 bool check_collision(SDL_Rect A, SDL_Rect B)
 {
@@ -118,14 +124,14 @@ void LoadGame()
 	AIPaddle.w = 20;
 
 	//Sets the starting X and Y coordinates of the Ball1, as well as height and width
-	Ball1.x = 370;
-	Ball1.y = 220;
+	Ball1.x = rand() % (WINDOW_WIDTH /2);
+	Ball1.y = rand() % WINDOW_HEIGHT;
 	Ball1.w = 20;
 	Ball1.h = 20;
 
 	//Sets the starting X and Y coordinates of the Ball2, as well as height and width
-	Ball2.x = rand();
-	Ball2.y = rand();
+	Ball2.x = rand() % (WINDOW_WIDTH /2);
+	Ball2.y = rand() % WINDOW_HEIGHT;
 	Ball2.w = 20;
 	Ball2.h = 20;
 
@@ -185,16 +191,52 @@ void Update()
 	//reset to centre of screen
 	if (Ball1.x < 0 || Ball1.x > WINDOW_WIDTH)
 	{
+
+		if (Ball1.x < 0)
+		{
+			cout << "Player Score:\t" << playerScore << endl;
+			AIScore++;
+			system("CLS");
+			cout << "Player Score:\t" << playerScore << endl;
+			cout << "AI Score:\t" << AIScore << endl;
+		}
+		
+		if (Ball1.x > WINDOW_HEIGHT)
+		{
+			cout << "Player Score:\t" << playerScore << endl;
+			playerScore++;
+			system("CLS");
+			cout << "Player Score:\t" << playerScore << endl;
+			cout << "AI Score:\t" << AIScore << endl;
+		}
+
 		Ball1.x = WINDOW_WIDTH / 2;
 		Ball1.y = WINDOW_HEIGHT / 2;
 		//this expression produces random numbers -1, -2, 1 and 2
 		speed_x = (rand() % 2 + 1) * direction[rand() % 2];
 		speed_y = (rand() % 2 + 1) * direction[rand() % 2];
-
 	}
 	
 	if (Ball2.x < 0 || Ball2.x > WINDOW_WIDTH)
 	{
+		if (Ball2.x < 0)
+		{
+			cout << "Player Score:\t" << playerScore << endl;
+			AIScore++;
+			system("CLS");
+			cout << "Player Score:\t" << playerScore << endl;
+			cout << "AI Score:\t" << AIScore << endl;
+		}
+
+		if (Ball2.x > WINDOW_HEIGHT)
+		{
+			cout << "Player Score:\t" << playerScore << endl;
+			playerScore++;
+			system("CLS");
+			cout << "Player Score:\t" << playerScore << endl;
+			cout << "AI Score:\t" << AIScore << endl;
+		}
+
 		Ball2.x = WINDOW_WIDTH / 2;
 		Ball2.y = WINDOW_HEIGHT / 2;
 		//this expression produces random numbers -1, -2, 1 and 2
@@ -266,10 +308,10 @@ void DrawScreen()
 	SDL_RenderFillRect(renderer, &AIPaddle);
 
 	//sets the colour of the Ball1 and renders it
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1, 255);
 	SDL_RenderFillRect(renderer, &Ball1);
 
-	SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(renderer, rand() % 255 + 1, rand() % 255 + 1, rand() % 255 + 1, 255);
 	SDL_RenderFillRect(renderer, &Ball2);
 
 	//sets the colour of the line
