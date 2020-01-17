@@ -38,7 +38,7 @@ int mouse_x, mouse_y;
 float speed_x, speed_y;
 int direction[2] = { -1, 1 };
 
-int speed2_x, speed2_y;
+float speed2_x, speed2_y;
 
 int playerScore = 0;
 int AIScore = 0;
@@ -260,7 +260,7 @@ void Update()
 	}
 
 
-	if (Ball1.x > Ball2.x || Ball1.y > Ball2.y)
+	if (Ball1.x > Ball2.x)
 	{
 		AIPaddle.y = Ball1.y - AIPaddle.h / 2 + Ball1.h / 2;
 	}
