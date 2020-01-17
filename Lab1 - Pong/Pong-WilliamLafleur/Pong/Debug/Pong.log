@@ -1,4 +1,9 @@
 ﻿  File not found - *.dll
   0 File(s) copied
   main.cpp
-  Pong.vcxproj -> G:\GAME202 - Object Oriented Programming\GAME202 - Labs\Lab1 - Pong\Pong-WilliamLafleur\Debug\Pong.exe
+d:\game202 - object oriented programming\game202 - labs\lab1 - pong\pong-williamlafleur\pong\main.cpp(216): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game202 - object oriented programming\game202 - labs\lab1 - pong\pong-williamlafleur\pong\main.cpp(217): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\game202 - object oriented programming\game202 - labs\lab1 - pong\pong-williamlafleur\pong\main.cpp(280): warning C4244: '*=': conversion from 'float' to 'int', possible loss of data
+d:\game202 - object oriented programming\game202 - labs\lab1 - pong\pong-williamlafleur\pong\main.cpp(283): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+d:\game202 - object oriented programming\game202 - labs\lab1 - pong\pong-williamlafleur\pong\main.cpp(284): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+  Pong.vcxproj -> D:\GAME202 - Object Oriented Programming\GAME202 - Labs\Lab1 - Pong\Pong-WilliamLafleur\Debug\Pong.exe

@@ -35,7 +35,7 @@ SDL_Event event;
 //Mouse coordinates;
 int mouse_x, mouse_y;
 
-int speed_x, speed_y;
+float speed_x, speed_y;
 int direction[2] = { -1, 1 };
 
 int speed2_x, speed2_y;
@@ -124,13 +124,13 @@ void LoadGame()
 	AIPaddle.w = 20;
 
 	//Sets the starting X and Y coordinates of the Ball1, as well as height and width
-	Ball1.x = rand() % (WINDOW_WIDTH /2);
+	Ball1.x = rand() % (WINDOW_WIDTH /2 - 1);
 	Ball1.y = rand() % WINDOW_HEIGHT;
 	Ball1.w = 20;
 	Ball1.h = 20;
 
 	//Sets the starting X and Y coordinates of the Ball2, as well as height and width
-	Ball2.x = rand() % (WINDOW_WIDTH /2);
+	Ball2.x = rand() % (WINDOW_WIDTH /2 - 1);
 	Ball2.y = rand() % WINDOW_HEIGHT;
 	Ball2.w = 20;
 	Ball2.h = 20;
@@ -260,7 +260,7 @@ void Update()
 	}
 
 
-	if (Ball1.x > Ball2.x)
+	if (Ball1.x > Ball2.x || Ball1.y > Ball2.y)
 	{
 		AIPaddle.y = Ball1.y - AIPaddle.h / 2 + Ball1.h / 2;
 	}
@@ -272,16 +272,18 @@ void Update()
 
 	if (check_collision(Ball1, AIPaddle) || check_collision(Ball1, PlayerPaddle))
 	{
-		speed_x = -speed_x;
+		speed_x *= -1.15f;
 	}
 
 	if (check_collision(Ball2, AIPaddle) || check_collision(Ball2, PlayerPaddle))
 	{
-		speed2_x = -speed2_x;
+		speed2_x *= -1.15f;
 	}
 
 	Ball1.x += speed_x;
 	Ball1.y += speed_y;
+
+	//Velocity.y *= 1.15f;
 
 	Ball2.x += speed2_x;
 	Ball2.y += speed2_y;
