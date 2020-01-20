@@ -8,7 +8,7 @@
 #define WINDOW_HEIGHT   600
 
 //defines max sprites to a number of 6
-#define NUM_SPRITES     6
+#define NUM_SPRITES     50
 #define MAX_SPEED       1
 
 SDL_Texture *sprite;
@@ -27,8 +27,10 @@ int LoadSprite(char *file, SDL_Renderer *renderer)
 		fprintf(stderr, "Couldn't load %s: %s", file, SDL_GetError());
 		return (-1);
 	}
-	sprite_w = 20;//temp->w;
-	sprite_h = 20;//temp->h;
+
+	//sets with and height of sprites
+	sprite_w = 40;//temp->w;
+	sprite_h = 40;//temp->h;
 
 	// Set transparent pixel as the pixel at (0,0)
 	if (temp->format->palette) {
@@ -121,7 +123,7 @@ int main(int argc, char *argv[])
 		return false;
 	}
 
-	if (LoadSprite("hts.bmp", renderer) < 0) {
+	if (LoadSprite("landscape.bmp", renderer) < 0) {
 		return false;
 	}
 
@@ -135,7 +137,7 @@ int main(int argc, char *argv[])
 		velocities[i].x = 0;
 		velocities[i].y = 0;
 
-		//first sprite moves horizontally and second sprite to move vertically
+		//first sprite(index 0) moves horizontally and second sprite(index 1) to move vertically
 		velocities[0].x = 1;
 		velocities[0].y = 0;
 		velocities[1].x = 0;
