@@ -8,7 +8,7 @@
 #define WINDOW_HEIGHT   600
 
 //defines max sprites to a number of 6
-#define NUM_SPRITES     50
+#define NUM_SPRITES     6
 #define MAX_SPEED       1
 
 SDL_Texture *sprite;
@@ -29,8 +29,8 @@ int LoadSprite(char *file, SDL_Renderer *renderer)
 	}
 
 	//sets with and height of sprites
-	sprite_w = 40;//temp->w;
-	sprite_h = 40;//temp->h;
+	sprite_w = temp->w;
+	sprite_h = temp->h;
 
 	// Set transparent pixel as the pixel at (0,0)
 	if (temp->format->palette) {
@@ -123,13 +123,15 @@ int main(int argc, char *argv[])
 		return false;
 	}
 
-	if (LoadSprite("landscape.bmp", renderer) < 0) {
+	if (LoadSprite("hts.bmp", renderer) < 0) {
 		return false;
 	}
 
 	// Initialize the sprite positions
 	srand(time(NULL));
 	for (i = 0; i < NUM_SPRITES; ++i) {
+
+		//initializes a random position between 0 and 799 - the sprites width so it does not go off screen
 		positions[i].x = rand() % (WINDOW_WIDTH - sprite_w);
 		positions[i].y = rand() % (WINDOW_HEIGHT - sprite_h);
 		positions[i].w = sprite_w;
@@ -144,6 +146,7 @@ int main(int argc, char *argv[])
 		velocities[1].y = 1;
 
 		while (!velocities[i].x && !velocities[i].y) {
+			//sets a random velocity to give x and y speeds of -1, 0 or 1
 			velocities[i].x = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
 			velocities[i].y = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
 		}
@@ -152,16 +155,14 @@ int main(int argc, char *argv[])
 
 	// Main render loop
 	done = 0;
-	while (!done) {
+	while (!done) {//game loop
 		// Check for events
-		while (SDL_PollEvent(&event)) {
+		while (SDL_PollEvent(&event)) {//event loop
 			if (event.type == SDL_QUIT || event.type == SDL_KEYDOWN) {
 				done = 1;
 			}
 		}
 		MoveSprites(window, renderer, sprite);
-		//setting a delay of 10
-		SDL_Delay(10);
 
 		//if index 0 X is greater than 0, increase by 1 through each iteration of loop
 		if (velocities[0].x > 0)
@@ -174,7 +175,9 @@ int main(int argc, char *argv[])
 		{
 			velocities[1].y++;
 		}
-	
+
+		//setting a delay of 20
+		SDL_Delay(20);
 	}
 
 	SDL_Quit();
