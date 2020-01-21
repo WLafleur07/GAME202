@@ -209,8 +209,10 @@ int main(int argc, char *argv[])
 				done = 1;
 				break;
 			case SDL_JOYBUTTONDOWN:
+
+				//prints out which button has been pressed.
 				printf("Joystick button pressed %d\n", event.jbutton.button);
-				
+			
 
 				if (event.jbutton.which == 0 && event.jbutton.button == 0) // Button 1 on 1st Joystick
 				{
@@ -224,7 +226,7 @@ int main(int argc, char *argv[])
 				}
 				break;
 				
-				
+				//prints out the X and Y location of the image when the joystick is moved
 				case SDL_JOYAXISMOTION:
 				printf("Joystick moved to (X %d, Y %d)\n", positions[0].x, positions[0].y);
 
