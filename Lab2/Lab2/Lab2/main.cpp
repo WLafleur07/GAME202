@@ -154,6 +154,7 @@ int main(int argc, char *argv[])
 	}
 
 	// Main render loop
+	int limit = 0;
 	done = 0;
 	while (!done) {//game loop
 		// Check for events
@@ -164,19 +165,31 @@ int main(int argc, char *argv[])
 		}
 		MoveSprites(window, renderer, sprite);
 
+		
 		//if index 0 X is greater than 0, increase by 1 through each iteration of loop
-		if (velocities[0].x > 0)
+		if (limit % 10 == 0)
 		{
-			velocities[0].x++;
-		}
-		//else to make the velocity increase in negative direction as well
+			if (velocities[0].x > 0)
+			{
+				velocities[0].x++;
+			}
+			else 
+			{
+				velocities[0].x--;
+			}
 
-		//if index 1 y is greater than 0, increase by 1 through each iteration of loop
-		if (velocities[1].y > 0)
-		{
-			velocities[1].y++;
+			//if index 1 y is greater than 0, increase by 1 through each iteration of loop
+			if (velocities[1].y > 0)
+			{
+				velocities[1].y++;
+			}
+			else
+			{
+				velocities[1].y--;
+			}
 		}
-		//else to make the velocity increase in negative direction as well
+
+		limit++;
 
 		//setting a delay of 20
 		SDL_Delay(20);
