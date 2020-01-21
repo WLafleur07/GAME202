@@ -139,11 +139,6 @@ int main(int argc, char *argv[])
 		velocities[i].x = 0;
 		velocities[i].y = 0;
 
-		//first sprite(index 0) moves horizontally and second sprite(index 1) to move vertically
-		velocities[0].x = 1;
-		velocities[0].y = 0;
-		velocities[1].x = 0;
-		velocities[1].y = 1;
 
 		while (!velocities[i].x && !velocities[i].y) {
 			//sets a random velocity to give x and y speeds of -1, 0 or 1
@@ -151,6 +146,11 @@ int main(int argc, char *argv[])
 			velocities[i].y = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
 		}
 
+		//first sprite(index 0) moves horizontally and second sprite(index 1) to move vertically
+		velocities[0].x = 1;
+		velocities[0].y = 0;
+		velocities[1].x = 0;
+		velocities[1].y = 1;
 	}
 
 	// Main render loop
@@ -169,12 +169,14 @@ int main(int argc, char *argv[])
 		{
 			velocities[0].x++;
 		}
+		//else to make the velocity increase in negative direction as well
 
 		//if index 1 y is greater than 0, increase by 1 through each iteration of loop
 		if (velocities[1].y > 0)
 		{
 			velocities[1].y++;
 		}
+		//else to make the velocity increase in negative direction as well
 
 		//setting a delay of 20
 		SDL_Delay(20);
