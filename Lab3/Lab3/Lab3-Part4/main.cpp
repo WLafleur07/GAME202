@@ -21,8 +21,8 @@ freely.
 #define WINDOW_WIDTH    256
 #define WINDOW_HEIGHT   (2*192)
 #else
-#define WINDOW_WIDTH    512
-#define WINDOW_HEIGHT   384
+#define WINDOW_WIDTH    800
+#define WINDOW_HEIGHT   600
 #endif
 //#define NUM_SPRITES     2
 #define MAX_SPEED       1
@@ -153,15 +153,15 @@ void MoveSprites(SDL_Window * window, SDL_Renderer * renderer)
 		{
 			SDL_RenderCopy(renderer, sprite1, NULL, position);
 		}
-		if (i == 1)
+		else if (i == 1)
 		{
 			SDL_RenderCopy(renderer, sprite2, NULL, position);
 		}
-		if (i == 2)
+		else if (i == 2)
 		{
 			SDL_RenderCopy(renderer, sprite3, NULL, position);
 		}
-		if (i == 3)
+		else if (i == 3)
 		{
 			SDL_RenderCopy(renderer, sprite4, NULL, position);
 		}
