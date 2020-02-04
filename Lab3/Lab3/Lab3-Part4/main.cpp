@@ -196,20 +196,39 @@ int main(int argc, char *argv[])
 		quit(2);
 	}
 
+	positions[0].x = 0;
+	positions[0].y = 0;
+	positions[0].w = sprite_w;
+	positions[0].h = sprite_h;
+
 	if (LoadSprite("cannon.bmp", renderer, sprite2) < 0)
 	{
 		quit(2);
 	}
+
+	positions[1].x = WINDOW_WIDTH - sprite_w;
+	positions[1].y = 0;
+	positions[1].w = sprite_w;
+	positions[1].h = sprite_h;
 
 	if (LoadSprite("cannonball.bmp", renderer, sprite3) < 0)
 	{
 		quit(2);
 	}
 
+	positions[2].x = WINDOW_WIDTH;
+	positions[2].w = sprite_w;
+	positions[2].h = sprite_h;
+
 	if (LoadSprite("fireball.bmp", renderer, sprite4) < 0)
 	{
 		quit(2);
 	}
+
+	positions[3].x = 0 - sprite_w;
+	positions[3].y = 0 - sprite_h;
+	positions[3].w = sprite_w;
+	positions[3].h = sprite_h;
 
 	SDL_InitSubSystem(SDL_INIT_JOYSTICK);
 
@@ -219,41 +238,13 @@ int main(int argc, char *argv[])
 
 	}
 	
-	positions[0].x = 0;
-	positions[0].y = 0;
-	positions[0].w = sprite_w;
-	positions[0].h = sprite_h;
-
-	positions[1].x = WINDOW_WIDTH - sprite_w;
-	positions[1].y = 0;
-	positions[1].w = sprite_w;
-	positions[1].h = sprite_h;
-
-	positions[2].x = WINDOW_WIDTH;
-	positions[2].w = sprite_w;
-	positions[2].h = sprite_h;
-
-	positions[3].x = 0 - sprite_w;
-	positions[3].y = 0 - sprite_h;
-	positions[3].w = sprite_w;
-	positions[3].h = sprite_h;
-
 	/* Initialize the sprite positions */
 	srand(time(NULL));
 	for (i = 0; i < MAX_SPRITES; ++i)
 	{
-		/*positions[i].x = rand() % (WINDOW_WIDTH - sprite_w);
-		positions[i].y = rand() % (WINDOW_HEIGHT - sprite_h);
-		positions[i].w = sprite_w;
-		positions[i].h = sprite_h;*/
 		velocities[i].x = 0;
 		velocities[i].y = 0;
 
-		/*while (!velocities[i].x && !velocities[i].y)
-		{
-			velocities[i].x = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
-			velocities[i].y = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
-		}*/
 	}
 
 	/* Main render loop */
@@ -274,18 +265,10 @@ int main(int argc, char *argv[])
 				break;
 
 			case SDL_MOUSEMOTION:
-				/*printf("Mouse moved by %d,%d to (%d,%d)\n",
-					event.motion.xrel, event.motion.yrel,
-					event.motion.x, event.motion.y);*/
-
-					//Track mouse movement
 				if (event.type == SDL_MOUSEMOTION)
 					SDL_GetMouseState(&mouse_x, &mouse_y);
 				break;
 			case SDL_MOUSEBUTTONDOWN:
-				//printf("Mouse button %d pressed at (%d,%d)\n",
-					//event.button.button, event.button.x, event.button.y);
-				//printf("Mouse button pressed \n");
 
 				if (event.button.button == 1)
 				{
@@ -307,46 +290,19 @@ int main(int argc, char *argv[])
 					done = 1;
 				}
 				break;
-				/*
-				case SDL_JOYAXISMOTION:
-				switch(event.jaxis.which)
-				{
-				case 0:
-				positions[0].x += event.jaxis.value / 6000;
-				if (positions[0].x>WINDOW_WIDTH-sprite_w)
-				positions[0].x = WINDOW_WIDTH-sprite_w;
-				if (positions[0].x< 0)
-				positions[0].x = 0;
-				break;
-				case 1:
-				positions[0].y += event.jaxis.value / 6000;
-				if (positions[0].y>WINDOW_HEIGHT-sprite_h)
-				positions[0].y = WINDOW_HEIGHT-sprite_h;
-				if (positions[0].y< 0)
-				positions[0].y = 0;
-				break;
-				}
-				break;
-				*/
+		
 			}
 
 		}
 		if (joy)
 		{
-
-			//positions[0].x += SDL_JoystickGetAxis(joy, 0) / 6000;
 			positions[0].y += SDL_JoystickGetAxis(joy, 1) / 6000;
-			/*if (positions[0].x > WINDOW_WIDTH - sprite_w)
-				positions[0].x = WINDOW_WIDTH - sprite_w;
-			if (positions[0].x < 0)
-				positions[0].x = 0;*/
 			if (positions[0].y > WINDOW_HEIGHT - sprite_h)
 				positions[0].y = WINDOW_HEIGHT - sprite_h;
 			if (positions[0].y < 0)
 				positions[0].y = 0;
 
 			velocities[0].x = 0;
-
 		}
 
 		positions[1].y = mouse_y;
@@ -355,17 +311,12 @@ int main(int argc, char *argv[])
 		{
 			positions[1].y = WINDOW_HEIGHT - sprite_h;
 		}
-		//positions[1].x = mouse_x;
 
 		MoveSprites(window, renderer);
-	//	MoveSprites(window, renderer, sprite2);
 		SDL_Delay(10);
 	}
 
-	//if ()
-
 	quit(0);
-
 	return 0;
 }
 
