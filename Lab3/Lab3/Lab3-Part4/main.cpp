@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
 	int i, done;
 	SDL_Event event;
 
-
+	//creates a window with title "Mini Game"
 	window = SDL_CreateWindow("Mini Game", 100, 100,
 		WINDOW_WIDTH, WINDOW_HEIGHT,
 		SDL_WINDOW_SHOWN);
@@ -191,40 +191,48 @@ int main(int argc, char *argv[])
 		quit(2);
 	}
 
+	//calls function to load sprites 1
 	if (LoadSprite("alien.bmp", renderer, sprite1) < 0)
 	{
 		quit(2);
 	}
 
+	//sets starting position of sprite 1
 	positions[0].x = 0;
 	positions[0].y = 0;
 	positions[0].w = sprite_w;
 	positions[0].h = sprite_h;
 
+	//calls function to load sprite 2
 	if (LoadSprite("cannon.bmp", renderer, sprite2) < 0)
 	{
 		quit(2);
 	}
 
+	//sets starting position of spite 2
 	positions[1].x = WINDOW_WIDTH - sprite_w;
 	positions[1].y = 0;
 	positions[1].w = sprite_w;
 	positions[1].h = sprite_h;
 
+	//calls function to load sprite 3
 	if (LoadSprite("cannonball.bmp", renderer, sprite3) < 0)
 	{
 		quit(2);
 	}
 
+	//sets starting position of sprite 3
 	positions[2].x = WINDOW_WIDTH;
 	positions[2].w = sprite_w;
 	positions[2].h = sprite_h;
 
+	//calls function to load sprite 4
 	if (LoadSprite("fireball.bmp", renderer, sprite4) < 0)
 	{
 		quit(2);
 	}
 
+	//sets starting position of sprite 4
 	positions[3].x = 0 - sprite_w;
 	positions[3].y = 0 - sprite_h;
 	positions[3].w = sprite_w;
@@ -269,7 +277,7 @@ int main(int argc, char *argv[])
 					SDL_GetMouseState(&mouse_x, &mouse_y);
 				break;
 			case SDL_MOUSEBUTTONDOWN:
-
+				//if mouse button is pressed, 
 				if (event.button.button == 1)
 				{
 					positions[2].x = positions[1].x;

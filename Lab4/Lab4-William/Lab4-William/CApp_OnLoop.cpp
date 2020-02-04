@@ -1,14 +1,15 @@
 //==============================================================================
-// William Lafleur,
-
-
+// William Lafleur
+// 4243260
+// 2/4/2020
+// Lab 4
 //==============================================================================
 #include "CApp.h"
 
 
 void CApp::MoveSprites()
 {
-    int i;
+    
     int window_w = WINDOW_WIDTH;
     int window_h = WINDOW_HEIGHT;
     SDL_Rect *position, *velocity;
@@ -36,6 +37,8 @@ void CApp::MoveSprites()
         }
 
         /* Blit the sprite onto the screen */
+
+		//if and else if statements to blit the 4 sprites onto the screen
 		if (i == 0)
 		{
 			SDL_RenderCopy(renderer, sprite1, NULL, position);
@@ -57,7 +60,7 @@ void CApp::MoveSprites()
 		}
     }
 
-
+	SDL_RenderPresent(renderer);
 }
 
 

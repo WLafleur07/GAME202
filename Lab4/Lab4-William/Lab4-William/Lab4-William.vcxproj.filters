@@ -45,9 +45,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="hts.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="alien.bmp">
       <Filter>Resource Files</Filter>
     </Image>
