@@ -9,16 +9,15 @@
 //==============================================================================
 void CApp::OnEvent(SDL_Event* Event) 
 {
-	//event check for if the ESCAPE key is pressed. If yes, running equals false
-	if (Event->type == SDL_QUIT || Event->type == SDL_KEYDOWN)
-	{
-		Running = false;
-	}
-
-	//switch statement checking for events
+	
 	switch (Event->type)
 	{
+	case SDL_QUIT:
+		Running = false;
+		break;
+
 	case SDL_KEYDOWN:
+		Running = false;
 		break;
 
 		//case for mouse motion

@@ -48,7 +48,7 @@ public:
     void OnLoop();
 
     void OnRender();
-    int LoadSprite(char *file, SDL_Renderer* someRenderer, SDL_Texture* &someSprite);
+    int LoadSprite(char *file, SDL_Texture* &someSprite);
     void MoveSprites();
 
     void OnCleanup();

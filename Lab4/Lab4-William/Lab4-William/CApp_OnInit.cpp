@@ -26,7 +26,7 @@ bool CApp::OnInit()
 	}
 
 	//function call to load sprite 1
-	if (LoadSprite("alien.bmp", renderer, sprite1) < 0)
+	if (LoadSprite("alien.bmp", sprite1) < 0)
 	{
 		return false;
 	}
@@ -37,7 +37,7 @@ bool CApp::OnInit()
 	positions[0].h = sprite_h;
 
 	//function call to load sprite 2
-	if (LoadSprite("cannon.bmp", renderer, sprite2) < 0)
+	if (LoadSprite("cannon.bmp", sprite2) < 0)
 	{
 		return false;
 	}
@@ -48,7 +48,7 @@ bool CApp::OnInit()
 	positions[1].h = sprite_h;
 
 	//function call to load sprite 3
-	if (LoadSprite("cannonball.bmp", renderer, sprite3) < 0)
+	if (LoadSprite("cannonball.bmp", sprite3) < 0)
 	{
 		return false;
 	}
@@ -58,7 +58,7 @@ bool CApp::OnInit()
 	positions[2].h = sprite_h;
 
 	//function call to load sprite 4
-	if (LoadSprite("fireball.bmp", renderer, sprite4) < 0)
+	if (LoadSprite("fireball.bmp", sprite4) < 0)
 	{
 		return false;
 	}
@@ -74,14 +74,6 @@ bool CApp::OnInit()
 	if (SDL_NumJoysticks() > 0)
 	{
 		joy = SDL_JoystickOpen(0);
-	}
-
-	/* Initialize the sprite positions */
-	srand(time(NULL));
-	for (i = 0; i < NUM_SPRITES; ++i)
-	{
-		velocities[i].x = 0;
-		velocities[i].y = 0;
 	}
 
 	return true;
