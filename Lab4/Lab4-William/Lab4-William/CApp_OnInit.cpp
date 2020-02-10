@@ -32,7 +32,7 @@ bool CApp::OnInit()
 	}
 	//sets starting x and y position of sprite1
 	positions[0].x = 0;
-	positions[0].y = 0;
+	positions[0].y = WINDOW_HEIGHT / 2 - sprite_h / 2;
 	positions[0].w = sprite_w;
 	positions[0].h = sprite_h;
 
@@ -43,7 +43,7 @@ bool CApp::OnInit()
 	}
 	//sets the starting x and y position of sprite2
 	positions[1].x = WINDOW_WIDTH - sprite_w;
-	positions[1].y = 0;
+	positions[1].y = WINDOW_HEIGHT / 2;
 	positions[1].w = sprite_w;
 	positions[1].h = sprite_h;
 

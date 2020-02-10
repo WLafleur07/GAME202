@@ -23,21 +23,11 @@ void CApp::MoveSprites()
     {
         position = &positions[i];
         velocity = &velocities[i];
+
         position->x += velocity->x;
-        if ((position->x < 0) || (position->x >= (window_w - sprite_w)))
-        {
-            velocity->x = -velocity->x;
-            position->x += velocity->x;
-        }
-        position->y += velocity->y;
-        if ((position->y < 0) || (position->y >= (window_h - sprite_h)))
-        {
-            velocity->y = -velocity->y;
-            position->y += velocity->y;
-        }
+		position->y += velocity->y;
 
         /* Blit the sprite onto the screen */
-
 		//if and else if statements to blit the 4 sprites onto the screen
 		if (i == 0)
 		{
