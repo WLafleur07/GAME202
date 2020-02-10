@@ -11,7 +11,7 @@ void CApp::OnRender()
 {
     /* Update the screen! */
     SDL_RenderPresent(renderer);
-    SDL_Delay(10);
+    SDL_Delay(20);
 }
 
 //==============================================================================

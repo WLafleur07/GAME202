@@ -13,9 +13,6 @@ void CApp::OnEvent(SDL_Event* Event)
 	switch (Event->type)
 	{
 	case SDL_QUIT:
-		Running = false;
-		break;
-
 	case SDL_KEYDOWN:
 		Running = false;
 		break;
@@ -34,7 +31,9 @@ void CApp::OnEvent(SDL_Event* Event)
 		{
 			positions[2].x = positions[1].x;
 			positions[2].y = positions[1].y;
-			velocities[2].x = -1;
+			velocities[2].x = -15;
+			velocities[2].y = -15;
+			
 		}
 		break;
 
@@ -45,7 +44,8 @@ void CApp::OnEvent(SDL_Event* Event)
 		{
 			positions[3].x = positions[0].x;
 			positions[3].y = positions[0].y;
-			velocities[3].x = -1;
+			velocities[3].x = -15;
+			velocities[3].y = -15;
 		}
 		break;
 	}

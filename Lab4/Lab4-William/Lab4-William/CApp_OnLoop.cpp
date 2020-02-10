@@ -41,11 +41,13 @@ void CApp::MoveSprites()
 
 		else if (i == 2)
 		{
+			velocity->y++;
 			SDL_RenderCopy(renderer, sprite3, NULL, position);
 		}
 
 		else if (i == 3)
 		{
+			velocity->y++;
 			SDL_RenderCopy(renderer, sprite4, NULL, position);
 		}
     }
