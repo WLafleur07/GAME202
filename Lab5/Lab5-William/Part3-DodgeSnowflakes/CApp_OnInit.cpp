@@ -25,19 +25,14 @@ bool CApp::OnInit()
     srand(time(NULL));
 
     for (i = 0; i < NUM_SPRITES; ++i) {
-		allplayers[i].imagename = "snowflake.bmp";
-        allplayers[i].loadPlayer(renderer);
-        allplayers[i].position.x = rand() % (window_w);
-        allplayers[i].position.y = -5;
-        allplayers[i].velocity.x = 0;
-        allplayers[i].velocity.y = 0;
-        while (!allplayers[i].velocity.x && !allplayers[i].velocity.y) {
-            //allplayers[i].velocity.x = (rand() % (MAX_SPEED * 2 + 1)) - MAX_SPEED;
-			allplayers[i].velocity.y = rand() % 6;
-			if (allplayers[i].velocity.y <= 3)
-			{
-				allplayers[i].velocity.y = 4;
-			}
+		allBalls[i] = CBalls("ballAttack.bmp", rand() % (window_w)-allBalls->position.w, rand() % -10, 0, 0);
+		allBalls[i].loadPlayer(renderer);
+		allBalls[i].position.w = 30;
+		allBalls[i].position.h = 30;
+	
+        while (!allBalls[i].velocity.x && !allBalls[i].velocity.y)
+		{
+			allBalls[i].velocity.y = rand() % 10;
         }
     }
     
@@ -52,6 +47,9 @@ bool CApp::OnInit()
 	runner.position.x = window_w / 2;
 	runner.position.y = window_h - runner.images[0].h;
 
+	landscape.imagename = "101186.bmp";
+	landscape.loadPlayer(renderer);
+	landscape.set_scroll_loc(0, 500, window_w, window_h);
 
 	return true;
 }

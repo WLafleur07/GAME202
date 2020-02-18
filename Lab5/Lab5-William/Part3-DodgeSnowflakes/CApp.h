@@ -6,8 +6,10 @@
 
 #include <SDL.h>
 #include "mywindow.h"
-#include "CPlayer.h"
+#include "CBalls.h"
 #include "CSpriteSheet.h"
+#include "CScroll_Player.h"
+
 
 #define TICK_INTERVAL    10
 #define NUM_SPRITES     10
@@ -19,11 +21,18 @@ class CApp
 private:
     bool Running;
 
+	
+	int runnerHealth = 100;
+	int score = 0;
+	int scrollNum = 0;
+	
+
     Uint32 next_time;
     SDL_Window *window;
     SDL_Renderer *renderer;
-    CPlayer allplayers[NUM_SPRITES];
+	CBalls allBalls[NUM_SPRITES];
 	CSpriteSheet runner;
+	CScroll_Player landscape;
 
 public:
     CApp();
@@ -44,6 +53,12 @@ public:
     void OnCleanup();
 
 	bool checkCollision(SDL_Rect A, SDL_Rect B);
+
+	void printScore();
+	void printRunnerHealth();
+	void printScrollNumber();
+	void clearScreen();
+
 };
 
 //==============================================================================

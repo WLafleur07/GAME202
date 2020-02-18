@@ -75,6 +75,28 @@ int CApp::LoadSprite(char *file, SDL_Texture* &psprite, SDL_Rect *prect)
     return (0);
 }
 
+void CApp::printScore()
+{
+	cout << "Score: " << score << endl;
+}
+
+void CApp::printRunnerHealth()
+{
+	if (runnerHealth > 0)
+	{
+		cout << "Health: " << runnerHealth << endl;
+	}
+}
+void CApp::printScrollNumber()
+{
+	cout << "Times Scrolled: " << scrollNum << endl;
+}
+
+void CApp::clearScreen()
+{
+	system("cls");
+}
+
 
 
 //------------------------------------------------------------------------------
@@ -96,6 +118,10 @@ int CApp::OnExecute()
 
         OnLoop();
         OnRender();
+		printScore();
+		printRunnerHealth();
+		clearScreen();
+		printScrollNumber();
     }
 
     OnCleanup();

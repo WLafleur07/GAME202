@@ -22,7 +22,7 @@
     <ProjectGuid>{cf9c91ac-b96d-455d-8a90-ba40dbdfd386}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Part2_MarsScroller</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectName>Part2-MarsScroller</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

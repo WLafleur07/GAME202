@@ -1,0 +1,29 @@
+#ifndef CSCROLL_PLAYER_H
+#define CSCROLL_PLAYER_H
+
+#include "CBalls.h"
+
+class CScroll_Player : public CBalls
+{
+    public:
+        CScroll_Player();
+        virtual ~CScroll_Player();
+        SDL_Rect destscr;
+        SDL_Rect src;   // Where to get Image (Part of Big Image
+        void display(SDL_Renderer *prenderer);
+        int loadPlayer(SDL_Renderer *prenderer);
+
+		//function to make the background texture scroll
+        void set_scroll_loc(int sx, int sy, int sw, int sh)
+        {
+            src.x = sx;
+            src.y = sy;
+            src.w = sw,
+            src.h = sh;
+        }
+        void move(int &timesScroll);
+    protected:
+    private:
+};
+
+#endif // CSCROLL_PLAYER_H

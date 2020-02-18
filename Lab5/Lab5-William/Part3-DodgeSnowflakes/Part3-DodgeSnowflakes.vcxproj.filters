@@ -38,21 +38,21 @@
     <ClCompile Include="CApp_OnRender.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CSpriteSheet.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="checkCollision.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CScroll_Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CBalls.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="mywindow.h">
@@ -61,15 +61,21 @@
     <ClInclude Include="CSpriteSheet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CScroll_Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CBalls.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="emmet-lego.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="snowflake.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="walksequence_spritesheet-512.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="101186.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="ballAttack.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

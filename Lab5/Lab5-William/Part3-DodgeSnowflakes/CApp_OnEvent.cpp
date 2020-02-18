@@ -18,6 +18,22 @@ void CApp::OnEvent(SDL_Event* Event)
 				runner.position.x = 0;
 			}
 			break;
+		case SDLK_DOWN:
+			for (int i = 0; i < NUM_SPRITES; i++)
+			{
+				allBalls[i].velocity.y++;
+			}
+			break;
+		case SDLK_UP:
+			
+			for (int i = 0; i < NUM_SPRITES; i++)
+			{
+				if (allBalls[i].velocity.y > 1)
+				{
+					allBalls[i].velocity.y--;
+				}
+			}
+			break;
 		case SDLK_RIGHT:
 			if(runner.position.x < window_w - runner.images[0].w)
 			{

@@ -22,7 +22,7 @@
     <ProjectGuid>{a639668c-d8a5-4548-bb86-da83e0cb0854}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>Part3_DodgeSnowflakes</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectName>Part3-DodgeSnowflakes</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -164,18 +164,20 @@
     <ClCompile Include="CApp_OnLoop.cpp" />
     <ClCompile Include="CApp_OnRender.cpp" />
     <ClCompile Include="checkCollision.cpp" />
-    <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CScroll_Player.cpp" />
+    <ClCompile Include="CBalls.cpp" />
     <ClCompile Include="CSpriteSheet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApp.h" />
-    <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CScroll_Player.h" />
+    <ClInclude Include="CBalls.h" />
     <ClInclude Include="CSpriteSheet.h" />
     <ClInclude Include="mywindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="emmet-lego.bmp" />
-    <Image Include="snowflake.bmp" />
+    <Image Include="101186.bmp" />
+    <Image Include="ballAttack.bmp" />
     <Image Include="walksequence_spritesheet-512.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
